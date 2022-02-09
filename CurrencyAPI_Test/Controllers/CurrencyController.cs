@@ -32,10 +32,10 @@ namespace CurrencyAPI_Test.Controllers
 
         [Route("/currencies/{take}/{skip}")]
         [HttpGet]
-        public JsonObject[] Get(int take = 10, int skip = 0)
+        public JsonObject[]? Get(int take = 10, int skip = 0)
         {            
-            var x = Update()?["Valute"].AsObject().ToList().Skip(skip).Take(take);
-            var res = x.Select(x => new JsonObject { [x.Key] = JsonNode.Parse(x.Value.AsObject().ToJsonString())}).ToArray();
+            var x = Update()?["Valute"]?.AsObject().ToList().Skip(skip).Take(take);
+            var res = x?.Select(x => new JsonObject { [x.Key] = JsonNode.Parse(x.Value.AsObject().ToJsonString())}).ToArray();
 
             return res;
         }
@@ -46,8 +46,8 @@ namespace CurrencyAPI_Test.Controllers
         {
            
 
-            var x = Update()?["Valute"].AsObject().ToList();
-            return  x.Where(n => n.Key == id).FirstOrDefault().Value;
+            var x = Update()?["Valute"]?.AsObject().ToList();
+            return  x?.Where(n => n.Key == id).FirstOrDefault().Value;
         }
 
        

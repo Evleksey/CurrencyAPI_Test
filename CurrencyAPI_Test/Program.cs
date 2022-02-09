@@ -1,7 +1,6 @@
 using System.Text.Json.Nodes;
 
 var builder = WebApplication.CreateBuilder(args);
-JsonNode? json;
 
 // Add services to the container.
 
